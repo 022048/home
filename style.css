@@ -23,7 +23,7 @@
   <div class="hero-text">
     <div class="small-title">Personal Science Research Archive</div>
     <h1>Genome, Sequence, and Scientific Discovery</h1>
-    <p>유전체, 염기서열 분석, 유전자 편집 중심 과학 보고서 아카이브</p>
+    <p>유전체, 염기서열, 유전자 편집 중심 과학 보고서 아카이브</p>
 
     <div class="hero-buttons">
       <a href="#reports" class="btn primary">보고서 보러가기</a>
@@ -38,9 +38,9 @@
 <section id="reports" class="section">
   <h2>Research Reports</h2>
 
-  <input id="search" placeholder="검색..." style="padding:10px; width:100%; margin-top:10px;">
+  <input id="search" placeholder="검색..." class="search">
 
-  <div id="category-buttons" style="margin-top:10px;"></div>
+  <div id="category-buttons"></div>
 </section>
 
 <div id="report-list" class="cards"></div>
@@ -57,7 +57,6 @@
 </div>
 
 <script>
-
 const reports = [
   {title:"차세대 염기서열 분석",category:"Sequencing",desc:"NGS 기반 연구"},
   {title:"유전체와 정밀의학",category:"Genomics",desc:"맞춤형 의료"},
@@ -71,7 +70,6 @@ let selected = "All";
 function render() {
   const search = document.getElementById("search").value.toLowerCase();
 
-  // 카테고리 버튼
   const btnDiv = document.getElementById("category-buttons");
   btnDiv.innerHTML = "";
 
@@ -87,13 +85,11 @@ function render() {
     btnDiv.appendChild(btn);
   });
 
-  // 필터
-  const filtered = reports.filter(r => {
-    return (selected==="All" || r.category===selected) &&
-    (r.title + r.desc).toLowerCase().includes(search);
-  });
+  const filtered = reports.filter(r =>
+    (selected==="All" || r.category===selected) &&
+    (r.title + r.desc).toLowerCase().includes(search)
+  );
 
-  // 출력
   const list = document.getElementById("report-list");
   list.innerHTML = "";
 
@@ -109,9 +105,7 @@ function render() {
 }
 
 document.getElementById("search").addEventListener("input", render);
-
 render();
-
 </script>
 
 </body>
