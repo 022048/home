@@ -1,297 +1,112 @@
-import { useMemo, useState } from "react";
-import { Search, ExternalLink, Dna, Database, Microscope } from "lucide-react";
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Genome Archive</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-export default function App() {
-  const reports = [
-    {
-      title: "차세대 염기서열 분석과 질병 예측",
-      category: "Sequencing",
-      year: "2026",
-      description:
-        "NGS의 기본 원리와 질병 예측, 변이 탐지, 맞춤형 분석 가능성을 정리한 탐구 보고서입니다.",
-      tags: ["NGS", "염기서열", "변이분석"],
-      link: "#",
-    },
-    {
-      title: "유전체 데이터와 정밀의학의 발전",
-      category: "Genomics",
-      year: "2026",
-      description:
-        "유전체 정보가 어떻게 맞춤형 진단과 치료 전략에 활용되는지를 탐구한 보고서입니다.",
-      tags: ["유전체", "정밀의학", "의료데이터"],
-      link: "#",
-    },
-    {
-      title: "CRISPR와 유전자 편집 기술의 현재",
-      category: "Gene Editing",
-      year: "2025",
-      description:
-        "유전자 편집 기술의 작동 원리와 연구 및 의료 분야 활용 가능성을 정리한 자료입니다.",
-      tags: ["CRISPR", "유전자편집", "생명공학"],
-      link: "#",
-    },
-    {
-      title: "유전 변이 해석과 바이오인포매틱스",
-      category: "Bioinformatics",
-      year: "2025",
-      description:
-        "유전 변이를 해석하는 과정과 데이터 분석 도구의 역할을 중심으로 정리한 보고서입니다.",
-      tags: ["바이오인포매틱스", "변이", "데이터분석"],
-      link: "#",
-    },
-    {
-      title: "인간 게놈 프로젝트 이후의 유전학",
-      category: "Genome Research",
-      year: "2024",
-      description:
-        "인간 게놈 프로젝트 이후 유전체 연구가 의학과 생명과학에 미친 영향을 정리한 탐구 자료입니다.",
-      tags: ["게놈", "유전학", "생명과학사"],
-      link: "#",
-    },
-    {
-      title: "희귀질환 진단에서의 유전체 분석",
-      category: "Medical Genomics",
-      year: "2024",
-      description:
-        "희귀질환 진단 과정에서 유전체 분석이 어떤 방식으로 활용되는지 조사한 보고서입니다.",
-      tags: ["희귀질환", "진단", "유전체의학"],
-      link: "#",
-    },
-  ];
+<body>
 
-  const categories = [
-    "All",
-    "Sequencing",
-    "Genomics",
-    "Gene Editing",
-    "Bioinformatics",
-    "Genome Research",
-    "Medical Genomics",
-  ];
+<div class="page">
 
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [search, setSearch] = useState("");
+<header class="header">
+  <div class="logo">Genome Archive</div>
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#reports">Reports</a>
+    <a href="#fields">Fields</a>
+  </nav>
+</header>
 
-  const filteredReports = useMemo(() => {
-    return reports.filter((report) => {
-      const matchesCategory =
-        selectedCategory === "All" || report.category === selectedCategory;
+<section class="hero">
+  <div class="hero-text">
+    <div class="small-title">Personal Science Research Archive</div>
+    <h1>Genome, Sequence, and Scientific Discovery</h1>
+    <p>유전체, 염기서열, 유전자 편집 중심 과학 보고서 아카이브</p>
 
-      const searchText =
-        `${report.title} ${report.description} ${report.category} ${report.tags.join(" ")}`.toLowerCase();
-
-      const matchesSearch = searchText.includes(search.toLowerCase());
-
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, search]);
-
-  return (
-    <div className="min-h-screen bg-white text-zinc-900">
-      <header className="border-b border-zinc-200">
-        <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-          <div className="text-lg font-semibold tracking-tight">Genome Archive</div>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-600">
-            <a href="#about" className="hover:text-zinc-900">About</a>
-            <a href="#reports" className="hover:text-zinc-900">Reports</a>
-            <a href="#fields" className="hover:text-zinc-900">Fields</a>
-          </nav>
-        </div>
-      </header>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="mb-4 text-sm uppercase tracking-[0.22em] text-zinc-500">
-              Personal Science Research Archive
-            </p>
-            <h1 className="text-5xl md:text-7xl font-semibold leading-[1.02] tracking-tight">
-              Genome, Sequence, and Scientific Discovery
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-600">
-              유전체, 염기서열 분석, 유전자 편집, 바이오인포매틱스 중심의
-              과학탐구 보고서를 세련되게 보관하고 정리할 수 있는 아카이브 홈페이지입니다.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#reports"
-                className="rounded-full bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-700"
-              >
-                보고서 보러가기
-              </a>
-              <a
-                href="#about"
-                className="rounded-full border border-zinc-300 px-5 py-3 text-sm font-medium text-zinc-800 hover:bg-zinc-100"
-              >
-                사이트 소개
-              </a>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            <div className="rounded-3xl border border-zinc-200 p-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <Dna className="h-5 w-5" />
-                <h3 className="font-semibold">유전체 분석</h3>
-              </div>
-              <p className="mt-3 text-sm leading-7 text-zinc-600">
-                유전자 구조, 변이, 발현 패턴을 중심으로 탐구한 보고서를 정리합니다.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-200 p-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <Database className="h-5 w-5" />
-                <h3 className="font-semibold">염기서열 데이터</h3>
-              </div>
-              <p className="mt-3 text-sm leading-7 text-zinc-600">
-                차세대 염기서열 분석, 데이터 해석, 질병 예측 관련 자료를 보관합니다.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-200 p-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <Microscope className="h-5 w-5" />
-                <h3 className="font-semibold">유전자 편집 연구</h3>
-              </div>
-              <p className="mt-3 text-sm leading-7 text-zinc-600">
-                CRISPR를 포함한 다양한 유전자 편집 기술과 응용 가능성을 다룹니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="mx-auto max-w-7xl px-6 py-8">
-        <div className="rounded-[2rem] bg-zinc-50 p-8 md:p-10">
-          <p className="text-sm uppercase tracking-[0.22em] text-zinc-500">About this site</p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
-            과학탐구 보고서를 보기 좋게 정리하는 개인 아카이브
-          </h2>
-          <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-600">
-            이 홈페이지는 과학탐구 보고서를 단순히 모아두는 것이 아니라,
-            주제별로 정리하고 검색하며 보기 좋게 전시하는 데 초점을 맞췄습니다.
-            각 카드에는 PDF, 구글 드라이브 링크, 상세 페이지, 발표 자료 링크를 연결할 수 있습니다.
-          </p>
-        </div>
-      </section>
-
-      <section id="fields" className="mx-auto max-w-7xl px-6 py-20">
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <div>
-            <p className="text-sm uppercase tracking-[0.22em] text-zinc-500">Core areas</p>
-            <h2 className="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">핵심 분야</h2>
-          </div>
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "유전체 분석",
-              text: "개인 유전정보, 질병 관련 유전자, 게놈 구조에 대한 탐구를 다룹니다.",
-            },
-            {
-              title: "염기서열 분석",
-              text: "DNA 염기서열 해독 기술과 데이터 분석 방법을 정리합니다.",
-            },
-            {
-              title: "유전자 편집",
-              text: "유전자 교정 기술의 원리와 응용 가능성을 탐구합니다.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-3xl border border-zinc-200 p-6 transition hover:-translate-y-1 hover:shadow-md"
-            >
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-zinc-600">{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="reports" className="mx-auto max-w-7xl px-6 pb-24">
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <div>
-            <p className="text-sm uppercase tracking-[0.22em] text-zinc-500">Archive</p>
-            <h2 className="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
-              Research Reports
-            </h2>
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => {
-              const active = selectedCategory === category;
-              return (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full px-4 py-2 text-sm transition ${
-                    active
-                      ? "bg-zinc-900 text-white"
-                      : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="flex items-center gap-3 rounded-full border border-zinc-200 px-4 py-3 md:w-[320px]">
-            <Search className="h-4 w-4 text-zinc-500" />
-            <input
-              type="text"
-              placeholder="보고서 검색"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-transparent text-sm outline-none placeholder:text-zinc-400"
-            />
-          </div>
-        </div>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filteredReports.map((report) => (
-            <article
-              key={report.title}
-              className="group rounded-[2rem] border border-zinc-200 p-6 transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="flex items-center justify-between gap-4">
-                <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700">
-                  {report.category}
-                </span>
-                <span className="text-sm text-zinc-500">{report.year}</span>
-              </div>
-
-              <h3 className="mt-5 text-2xl font-semibold leading-snug tracking-tight">
-                {report.title}
-              </h3>
-
-              <p className="mt-4 text-sm leading-7 text-zinc-600">{report.description}</p>
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                {report.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-zinc-200 px-3 py-1 text-xs text-zinc-600"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href={report.link}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-900"
-              >
-                자세히 보기 <ExternalLink className="h-4 w-4" />
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
+    <div class="hero-buttons">
+      <a href="#reports" class="btn primary">보고서 보러가기</a>
     </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1581093588401-22f6c8f7c9b8">
+  </div>
+</section>
+
+<section id="reports" class="section">
+  <h2>Research Reports</h2>
+
+  <input id="search" placeholder="검색..." class="search">
+
+  <div id="category-buttons"></div>
+</section>
+
+<div id="report-list" class="cards"></div>
+
+<section id="about" class="section">
+  <h2>About</h2>
+  <p>과학탐구 보고서를 정리하는 개인 아카이브</p>
+</section>
+
+<footer class="footer">
+  © 2026 Genome Archive
+</footer>
+
+</div>
+
+<script>
+const reports = [
+  {title:"차세대 염기서열 분석",category:"Sequencing",desc:"NGS 기반 연구"},
+  {title:"유전체와 정밀의학",category:"Genomics",desc:"맞춤형 의료"},
+  {title:"CRISPR 유전자 편집",category:"Gene Editing",desc:"유전자 교정 기술"}
+];
+
+const categories = ["All","Sequencing","Genomics","Gene Editing"];
+
+let selected = "All";
+
+function render() {
+  const search = document.getElementById("search").value.toLowerCase();
+
+  const btnDiv = document.getElementById("category-buttons");
+  btnDiv.innerHTML = "";
+
+  categories.forEach(c => {
+    const btn = document.createElement("button");
+    btn.innerText = c;
+    btn.className = "btn";
+    if(c === selected) btn.style.background = "#7ee7ff";
+    btn.onclick = () => {
+      selected = c;
+      render();
+    };
+    btnDiv.appendChild(btn);
+  });
+
+  const filtered = reports.filter(r =>
+    (selected==="All" || r.category===selected) &&
+    (r.title + r.desc).toLowerCase().includes(search)
   );
+
+  const list = document.getElementById("report-list");
+  list.innerHTML = "";
+
+  filtered.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <h3>${r.title}</h3>
+      <p>${r.desc}</p>
+    `;
+    list.appendChild(div);
+  });
 }
+
+document.getElementById("search").addEventListener("input", render);
+render();
+</script>
+
+</body>
+</html>
