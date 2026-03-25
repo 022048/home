@@ -1,112 +1,42 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>Genome Archive</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<div class="page">
-
-<header class="header">
-  <div class="logo">Genome Archive</div>
-  <nav class="nav">
-    <a href="#about">About</a>
-    <a href="#reports">Reports</a>
-    <a href="#fields">Fields</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="hero-text">
-    <div class="small-title">Personal Science Research Archive</div>
-    <h1>Genome, Sequence, and Scientific Discovery</h1>
-    <p>유전체, 염기서열, 유전자 편집 중심 과학 보고서 아카이브</p>
-
-    <div class="hero-buttons">
-      <a href="#reports" class="btn primary">보고서 보러가기</a>
-    </div>
-  </div>
-
-  <div class="hero-image">
-    <img src="https://images.unsplash.com/photo-1581093588401-22f6c8f7c9b8">
-  </div>
-</section>
-
-<section id="reports" class="section">
-  <h2>Research Reports</h2>
-
-  <input id="search" placeholder="검색..." class="search">
-
-  <div id="category-buttons"></div>
-</section>
-
-<div id="report-list" class="cards"></div>
-
-<section id="about" class="section">
-  <h2>About</h2>
-  <p>과학탐구 보고서를 정리하는 개인 아카이브</p>
-</section>
-
-<footer class="footer">
-  © 2026 Genome Archive
-</footer>
-
-</div>
-
-<script>
-const reports = [
-  {title:"차세대 염기서열 분석",category:"Sequencing",desc:"NGS 기반 연구"},
-  {title:"유전체와 정밀의학",category:"Genomics",desc:"맞춤형 의료"},
-  {title:"CRISPR 유전자 편집",category:"Gene Editing",desc:"유전자 교정 기술"}
-];
-
-const categories = ["All","Sequencing","Genomics","Gene Editing"];
-
-let selected = "All";
-
-function render() {
-  const search = document.getElementById("search").value.toLowerCase();
-
-  const btnDiv = document.getElementById("category-buttons");
-  btnDiv.innerHTML = "";
-
-  categories.forEach(c => {
-    const btn = document.createElement("button");
-    btn.innerText = c;
-    btn.className = "btn";
-    if(c === selected) btn.style.background = "#7ee7ff";
-    btn.onclick = () => {
-      selected = c;
-      render();
-    };
-    btnDiv.appendChild(btn);
-  });
-
-  const filtered = reports.filter(r =>
-    (selected==="All" || r.category===selected) &&
-    (r.title + r.desc).toLowerCase().includes(search)
-  );
-
-  const list = document.getElementById("report-list");
-  list.innerHTML = "";
-
-  filtered.forEach(r => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <h3>${r.title}</h3>
-      <p>${r.desc}</p>
-    `;
-    list.appendChild(div);
-  });
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1020;
+  color: white;
 }
 
-document.getElementById("search").addEventListener("input", render);
-render();
-</script>
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
 
-</body>
-</html>
+.logo {
+  color: #7ee7ff;
+  font-weight: bold;
+}
+
+.nav a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  padding: 60px 40px;
+  gap: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background: #121a33;
+  padding: 20px;
+  border-radius: 20px;
+}
